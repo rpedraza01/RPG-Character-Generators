@@ -1,12 +1,15 @@
 import random
 
 # What I want this script to do:
-# People can enter in whatever name they want
-# Allow people to choose their race and class, or allow the script to randomly choose their race and class
-# The script will roll for each stat, randomly choosing values between a range of 3 - 18
-# A summary of the new character is generated (maybe create a CSV or PDF of the summary?)
-# The script asks if the user would like to try again or end the program
+# 1. People can enter in whatever name they want
+# 2. Allow people to choose their race and class, or allow the script to randomly choose their race, class, and background
+# 3. The script will simualte rolling four 6-sided dice dropping the lowest value and returning the highest 3 dice to create and assign a stat value to an attribute
+# 4. A summary of the new character is generated (maybe create a CSV or PDF of the summary?)
+# 5. The script asks if the user would like to try again or end the program
 
+# This function rolls four 6-sided dice
+# It then sorts the rolls greatest to lowest
+# Then it returns the sum of the greatest 3 dice while dropping the lowest die value
 def dice_roll_func():
 	dice_rolls = [random.randint(1, 6) for _ in range(4)]
 	dice_rolls.sort(reverse = True)
@@ -14,10 +17,12 @@ def dice_roll_func():
 
 
 while True:
+# Intro to program. Assigns user created name to variable
 	print("Welcome mortal to the Dungeons and Dragons Random Character Generator! Proceed if you dare!")
 	user_char_name = input("What shall your hero be called? > ")
 	print(f"{user_char_name} is a strange name. Might you be from another land? \n Now let's determine your hero's class.")
 
+# Character class
 	char_class_list = [
 		"Barbarian",
 		"Bard",
@@ -40,6 +45,7 @@ while True:
 		user_class_pick = input("Please pick from the following list: \n Barbarian \n Bard \n Cleric \n Druid \n Fighter \n Monk \n Paladin \n Ranger \n Rogue \n Sorcerer \n Warlock \n Wizard > ")
 		print(f"You've selected {user_class_pick}. \n Next, we shall pick your hero's race.")
 
+# Character race
 	char_race_list = [
 		"Dwarf",
 		"Elf",
@@ -59,6 +65,7 @@ while True:
 		user_race_pick = input("Please pick from the following list: \n Dwarf \n Elf \n Halfling \n Human \n Dragonborn \n Gnome \n Half-Elf \n Half-Orc \n Tiefling > ")
 		print(f"You've selected {user_race_pick}. \n Next, we shall pick your hero's background.")
 
+# Character background
 	char_bkgd_list = [
 		"Acolyte",
 		"Charlatan",
@@ -86,9 +93,11 @@ while True:
 		user_bkgd_pick = input("Please pick from the following list: \n Acolyte \n Charlatan \n Criminal \n Entertainer \n Folk Hero \n Gladiator \n Guild Artisan \n Guild Merchant \n Hermit \n Knight \n Noble \n Outlander \n Pirate \n Sage \n Sailor \n Soldier \n Urchin > ")
 		print(f"You've selected {user_bkgd_pick}. \n Next, we shall randomly generate your hero's base attributes.")
 
+# Character base attribute rolls and assignment
 	att_stats = [dice_roll_func() for _ in range(6)]
 	print(f"{user_char_name}'s base attributes shall be: \n STR {att_stats[0]} \n DEX {att_stats[1]} \n CON {att_stats[2]} \n INT {att_stats[3]} \n WIS {att_stats[4]} \n CHA {att_stats[5]} \n Impressive!.")
 
+# Summary of character build
 	summary = (f"Here's a summary of your new Hero. \n Hero name: {user_char_name} \n Hero class: {user_class_pick} \n Hero race: {user_race_pick} \n Hero background: {user_bkgd_pick} \n Stats: \n STR {att_stats[0]} \n DEX {att_stats[1]} \n CON {att_stats[2]} \n INT {att_stats[3]} \n WIS {att_stats[4]} \n CHA {att_stats[5]}")
 	print_summary = input("Would you like a summary of your hero? > ")
 	if print_summary == "yes":
@@ -96,6 +105,7 @@ while True:
 	else:
 		print("I see you like to live dangerously!")
 
+# Exit string for user to make another build or exit program
 	exit = input(f"I hope you're satisfied with your new Hero. If not would you like to create a new hero? > ")
 	if exit != "yes":
 		break
