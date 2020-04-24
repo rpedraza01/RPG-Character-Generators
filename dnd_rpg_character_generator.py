@@ -16,13 +16,8 @@ def dice_roll_func():
 	return sum(dice_rolls[:3])
 
 
-while True:
-# Intro to program. Assigns user created name to variable
-	print("Welcome mortal to the Dungeons and Dragons Random Character Generator! Proceed if you dare!")
-	user_char_name = input("What shall your hero be called? > ")
-	print(f"{user_char_name} is a strange name. Might you be from another land? \n Now let's determine your hero's class.")
-
-# Character class
+# This function randomly chooses a hero's class
+def char_class_func():
 	char_class_list = [
 		"Barbarian",
 		"Bard",
@@ -37,15 +32,12 @@ while True:
 		"Warlock",
 		"Wizard"
 		]
-	user_class_pick = input("Would you like to pick your hero's class? If not, I will choose for you. > ")
-	if user_class_pick != "yes":
-		user_class_pick = random.choice(char_class_list)
-		print(f"Your hero's class shall be {user_class_pick}!")
-	else:
-		user_class_pick = input("Please pick from the following list: \n Barbarian \n Bard \n Cleric \n Druid \n Fighter \n Monk \n Paladin \n Ranger \n Rogue \n Sorcerer \n Warlock \n Wizard > ")
-		print(f"You've selected {user_class_pick}. \n Next, we shall pick your hero's race.")
+	rand_char_class_pick = random.choice(char_class_list)
+	return rand_char_class_pick
 
-# Character race
+
+# This function randomly chooses a hero's race
+def char_race_func():
 	char_race_list = [
 		"Dwarf",
 		"Elf",
@@ -57,15 +49,12 @@ while True:
 		"Half-Orc",
 		"Tiefling"
 		]
-	user_race_pick = input("Would you like to pick your hero's race? If not, I will choose for you. > ")
-	if user_race_pick != "yes":
-		user_race_pick = random.choice(char_race_list)
-		print(f"Your hero's race shall be {user_race_pick}! \n Next, we shall pick your hero's background.")
-	else:
-		user_race_pick = input("Please pick from the following list: \n Dwarf \n Elf \n Halfling \n Human \n Dragonborn \n Gnome \n Half-Elf \n Half-Orc \n Tiefling > ")
-		print(f"You've selected {user_race_pick}. \n Next, we shall pick your hero's background.")
+	rand_char_race_pick = random.choice(char_race_list)
+	return rand_char_race_pick
 
-# Character background
+
+# This function randomly chooses a hero's background
+def char_bkgd_func():
 	char_bkgd_list = [
 		"Acolyte",
 		"Charlatan",
@@ -84,13 +73,42 @@ while True:
 		"Sailor",
 		"Soldier",
 		"Urchin"
-	]
+		]
+	rand_char_bkgd_pick = random.choice(char_bkgd_list)
+	return rand_char_bkgd_pick
+
+
+while True:
+# Intro to program. Assigns user created name to variable
+	print("Welcome mortal to the Dungeons and Dragons Random Character Generator! Proceed if you dare!")
+	user_char_name = input("What shall your hero be called? > ")
+	print(f"{user_char_name} is a strange name. Might you be from another land? \n Now let's determine your hero's class.")
+
+# Character class
+	user_class_pick = input("Would you like to pick your hero's class? If not, I will choose for you. > ")
+	if user_class_pick != "yes":
+		user_class_pick = char_class_func()
+		print(f"Your hero's class shall be {user_class_pick}!")
+	else:
+		user_class_pick = input("Please pick from the following list: \n Barbarian \n Bard \n Cleric \n Druid \n Fighter \n Monk \n Paladin \n Ranger \n Rogue \n Sorcerer \n Warlock \n Wizard \n Your Pick > ")
+		print(f"You've selected {user_class_pick}. \n Next, we shall pick your hero's race.")
+
+# Character race
+	user_race_pick = input("Would you like to pick your hero's race? If not, I will choose for you. > ")
+	if user_race_pick != "yes":
+		user_race_pick = char_race_func()
+		print(f"Your hero's race shall be {user_race_pick}! \n Next, we shall pick your hero's background.")
+	else:
+		user_race_pick = input("Please pick from the following list: \n Dwarf \n Elf \n Halfling \n Human \n Dragonborn \n Gnome \n Half-Elf \n Half-Orc \n Tiefling \n Your Pick > ")
+		print(f"You've selected {user_race_pick}. \n Next, we shall pick your hero's background.")
+
+# Character background
 	user_bkgd_pick = input("Would you like to pick your hero's background? If not, I will choose for you. > ")
 	if user_bkgd_pick != "yes":
-		user_bkgd_pick = random.choice(char_bkgd_list)
+		user_bkgd_pick = char_bkgd_func()
 		print(f"Your hero's background shall be {user_bkgd_pick}! \n Next, we shall randomly generate your hero's base attributes.")
 	else:
-		user_bkgd_pick = input("Please pick from the following list: \n Acolyte \n Charlatan \n Criminal \n Entertainer \n Folk Hero \n Gladiator \n Guild Artisan \n Guild Merchant \n Hermit \n Knight \n Noble \n Outlander \n Pirate \n Sage \n Sailor \n Soldier \n Urchin > ")
+		user_bkgd_pick = input("Please pick from the following list: \n Acolyte \n Charlatan \n Criminal \n Entertainer \n Folk Hero \n Gladiator \n Guild Artisan \n Guild Merchant \n Hermit \n Knight \n Noble \n Outlander \n Pirate \n Sage \n Sailor \n Soldier \n Urchin \n Your Pick > ")
 		print(f"You've selected {user_bkgd_pick}. \n Next, we shall randomly generate your hero's base attributes.")
 
 # Character base attribute rolls and assignment
